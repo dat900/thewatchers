@@ -1,0 +1,9 @@
+﻿@if (ViewBag.TenKH == null)
+{
+	<li class="nav-item">@Html.ActionLink("Đăng ký", "Register", "User", new { @class = "nav-link" })</li>
+	<li class="nav-item">@Html.ActionLink("Đăng nhập", "Login", "User", new { @class = "nav-link" })</li>
+}
+else
+{
+	<li class="nav-item"><a class=" nav-link">@ViewBag.TenKH</a></li>
+}

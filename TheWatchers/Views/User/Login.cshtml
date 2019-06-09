@@ -1,0 +1,21 @@
+﻿
+@{
+	ViewBag.Title = "Login";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login","User",FormMethod.Post))
+{
+	<label>Tên đăng nhập:</label>
+	<br />
+	@Html.TextBox("txtUsername","",new { @class = "form-control" });
+	<br />
+	<label>Mật khẩu:</label>
+	<br />
+	@Html.TextBox("txtPass","", new { @class = "form-control" });
+	<br />
+	<input type="submit" class="form-control btn btn-light" value="Đăng nhập" />
+}
+

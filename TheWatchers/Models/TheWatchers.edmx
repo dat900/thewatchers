@@ -1,0 +1,1020 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TheWatchersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chitietbanhang">
+          <Key>
+            <PropertyRef Name="seri" />
+          </Key>
+          <Property Name="seri" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="masp" Type="varchar" MaxLength="6" />
+          <Property Name="stt_hd" Type="int" />
+        </EntityType>
+        <EntityType Name="chitietdonhang">
+          <Key>
+            <PropertyRef Name="id_donhang" />
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="id_donhang" Type="int" Nullable="false" />
+          <Property Name="masp" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="soluong" Type="int" />
+        </EntityType>
+        <EntityType Name="chitietnhaphang">
+          <Key>
+            <PropertyRef Name="seri" />
+          </Key>
+          <Property Name="seri" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dongianhap" Type="float" Nullable="false" />
+          <Property Name="masp" Type="varchar" MaxLength="6" />
+          <Property Name="stt_hd" Type="int" />
+        </EntityType>
+        <EntityType Name="dongho">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="loai" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="thuonghieu" Type="varchar" MaxLength="10" />
+          <Property Name="tensp" Type="varchar" MaxLength="50" />
+          <Property Name="dongia" Type="float" />
+          <Property Name="baohanh" Type="int" />
+          <Property Name="id_loai" Type="int" />
+          <Property Name="act" Type="bit" />
+        </EntityType>
+        <EntityType Name="dongho_seri">
+          <Key>
+            <PropertyRef Name="seri" />
+          </Key>
+          <Property Name="masp" Type="varchar" MaxLength="6" />
+          <Property Name="seri" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="donhang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_kh" Type="int" />
+          <Property Name="ngay_dat" Type="date" Nullable="false" />
+          <Property Name="stat" Type="int" />
+        </EntityType>
+        <EntityType Name="hoadon_bh">
+          <Key>
+            <PropertyRef Name="stt_hd" />
+          </Key>
+          <Property Name="ngaygd" Type="date" />
+          <Property Name="makh" Type="int" />
+          <Property Name="manv" Type="varchar" MaxLength="5" />
+          <Property Name="tongtien" Type="money" Nullable="false" />
+          <Property Name="stt_hd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hoadon_nh">
+          <Key>
+            <PropertyRef Name="stt_hd" />
+          </Key>
+          <Property Name="ngaylap" Type="date" Nullable="false" />
+          <Property Name="manv" Type="varchar" MaxLength="5" />
+          <Property Name="stt_hd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mancc" Type="int" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="makh" />
+          </Key>
+          <Property Name="tenkh" Type="varchar" MaxLength="30" />
+          <Property Name="diachi_kh" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="sdt_kh" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="makh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="matkhau" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="loai">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_loai" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nhacungcap">
+          <Key>
+            <PropertyRef Name="mancc" />
+          </Key>
+          <Property Name="tenncc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="diachi_ncc" Type="varchar" MaxLength="30" />
+          <Property Name="sdt_ncc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="mancc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="manv" />
+          </Key>
+          <Property Name="manv" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="hotennv" Type="varchar" MaxLength="100" />
+          <Property Name="sdt" Type="varchar" MaxLength="13" />
+          <Property Name="diachi_bh" Type="varchar" MaxLength="30" />
+          <Property Name="chucvu" Type="varchar" MaxLength="20" />
+          <Property Name="gioitinh" Type="int" />
+          <Property Name="ngaybatdau" Type="date" />
+          <Property Name="ngayketthuc" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="thuonghieu">
+          <Key>
+            <PropertyRef Name="thuonghieu" />
+          </Key>
+          <Property Name="thuonghieu" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__chitietba__stt_h__29221CFB">
+          <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="0..1" />
+          <End Role="chitietbanhang" Type="Self.chitietbanhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoadon_bh">
+              <PropertyRef Name="stt_hd" />
+            </Principal>
+            <Dependent Role="chitietbanhang">
+              <PropertyRef Name="stt_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietban__masp__6E01572D">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="chitietbanhang" Type="Self.chitietbanhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chitietbanhang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietban__seri__34C8D9D1">
+          <End Role="dongho_seri" Type="Self.dongho_seri" Multiplicity="1" />
+          <End Role="chitietbanhang" Type="Self.chitietbanhang" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dongho_seri">
+              <PropertyRef Name="seri" />
+            </Principal>
+            <Dependent Role="chitietbanhang">
+              <PropertyRef Name="seri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietdo__id_do__625A9A57">
+          <End Role="donhang" Type="Self.donhang" Multiplicity="1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donhang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="id_donhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietdon__masp__634EBE90">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietnh__stt_h__2B0A656D">
+          <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="0..1" />
+          <End Role="chitietnhaphang" Type="Self.chitietnhaphang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoadon_nh">
+              <PropertyRef Name="stt_hd" />
+            </Principal>
+            <Dependent Role="chitietnhaphang">
+              <PropertyRef Name="stt_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietnha__masp__70DDC3D8">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="chitietnhaphang" Type="Self.chitietnhaphang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chitietnhaphang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietnha__seri__31EC6D26">
+          <End Role="dongho_seri" Type="Self.dongho_seri" Multiplicity="1" />
+          <End Role="chitietnhaphang" Type="Self.chitietnhaphang" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dongho_seri">
+              <PropertyRef Name="seri" />
+            </Principal>
+            <Dependent Role="chitietnhaphang">
+              <PropertyRef Name="seri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dongho__id_loai__4F47C5E3">
+          <End Role="loai" Type="Self.loai" Multiplicity="0..1" />
+          <End Role="dongho" Type="Self.dongho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loai">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dongho">
+              <PropertyRef Name="id_loai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dongho__thuonghi__1CF15040">
+          <End Role="thuonghieu" Type="Self.thuonghieu" Multiplicity="0..1" />
+          <End Role="dongho" Type="Self.dongho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="thuonghieu">
+              <PropertyRef Name="thuonghieu" />
+            </Principal>
+            <Dependent Role="dongho">
+              <PropertyRef Name="thuonghieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dongho_ser__masp__1ED998B2">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="dongho_seri" Type="Self.dongho_seri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="dongho_seri">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__donhang__id_kh__5224328E">
+          <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+          <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khachhang">
+              <PropertyRef Name="makh" />
+            </Principal>
+            <Dependent Role="donhang">
+              <PropertyRef Name="id_kh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoadon_bh__makh__4CA06362">
+          <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+          <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khachhang">
+              <PropertyRef Name="makh" />
+            </Principal>
+            <Dependent Role="hoadon_bh">
+              <PropertyRef Name="makh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoadon_bh__manv__7F2BE32F">
+          <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+          <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhanvien">
+              <PropertyRef Name="manv" />
+            </Principal>
+            <Dependent Role="hoadon_bh">
+              <PropertyRef Name="manv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoadon_nh__manv__6FE99F9F">
+          <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+          <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhanvien">
+              <PropertyRef Name="manv" />
+            </Principal>
+            <Dependent Role="hoadon_nh">
+              <PropertyRef Name="manv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hoadon_nh_nhacungcap">
+          <End Role="nhacungcap" Type="Self.nhacungcap" Multiplicity="0..1" />
+          <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhacungcap">
+              <PropertyRef Name="mancc" />
+            </Principal>
+            <Dependent Role="hoadon_nh">
+              <PropertyRef Name="mancc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheWatchersModelStoreContainer">
+          <EntitySet Name="chitietbanhang" EntityType="Self.chitietbanhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chitietdonhang" EntityType="Self.chitietdonhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chitietnhaphang" EntityType="Self.chitietnhaphang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dongho" EntityType="Self.dongho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dongho_seri" EntityType="Self.dongho_seri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="donhang" EntityType="Self.donhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hoadon_bh" EntityType="Self.hoadon_bh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hoadon_nh" EntityType="Self.hoadon_nh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loai" EntityType="Self.loai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhacungcap" EntityType="Self.nhacungcap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thuonghieu" EntityType="Self.thuonghieu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__chitietba__stt_h__29221CFB" Association="Self.FK__chitietba__stt_h__29221CFB">
+            <End Role="hoadon_bh" EntitySet="hoadon_bh" />
+            <End Role="chitietbanhang" EntitySet="chitietbanhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietban__masp__6E01572D" Association="Self.FK__chitietban__masp__6E01572D">
+            <End Role="dongho" EntitySet="dongho" />
+            <End Role="chitietbanhang" EntitySet="chitietbanhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietban__seri__34C8D9D1" Association="Self.FK__chitietban__seri__34C8D9D1">
+            <End Role="dongho_seri" EntitySet="dongho_seri" />
+            <End Role="chitietbanhang" EntitySet="chitietbanhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietdo__id_do__625A9A57" Association="Self.FK__chitietdo__id_do__625A9A57">
+            <End Role="donhang" EntitySet="donhang" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietdon__masp__634EBE90" Association="Self.FK__chitietdon__masp__634EBE90">
+            <End Role="dongho" EntitySet="dongho" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietnh__stt_h__2B0A656D" Association="Self.FK__chitietnh__stt_h__2B0A656D">
+            <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+            <End Role="chitietnhaphang" EntitySet="chitietnhaphang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietnha__masp__70DDC3D8" Association="Self.FK__chitietnha__masp__70DDC3D8">
+            <End Role="dongho" EntitySet="dongho" />
+            <End Role="chitietnhaphang" EntitySet="chitietnhaphang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietnha__seri__31EC6D26" Association="Self.FK__chitietnha__seri__31EC6D26">
+            <End Role="dongho_seri" EntitySet="dongho_seri" />
+            <End Role="chitietnhaphang" EntitySet="chitietnhaphang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dongho__id_loai__4F47C5E3" Association="Self.FK__dongho__id_loai__4F47C5E3">
+            <End Role="loai" EntitySet="loai" />
+            <End Role="dongho" EntitySet="dongho" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dongho__thuonghi__1CF15040" Association="Self.FK__dongho__thuonghi__1CF15040">
+            <End Role="thuonghieu" EntitySet="thuonghieu" />
+            <End Role="dongho" EntitySet="dongho" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dongho_ser__masp__1ED998B2" Association="Self.FK__dongho_ser__masp__1ED998B2">
+            <End Role="dongho" EntitySet="dongho" />
+            <End Role="dongho_seri" EntitySet="dongho_seri" />
+          </AssociationSet>
+          <AssociationSet Name="FK__donhang__id_kh__5224328E" Association="Self.FK__donhang__id_kh__5224328E">
+            <End Role="khachhang" EntitySet="khachhang" />
+            <End Role="donhang" EntitySet="donhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoadon_bh__makh__4CA06362" Association="Self.FK__hoadon_bh__makh__4CA06362">
+            <End Role="khachhang" EntitySet="khachhang" />
+            <End Role="hoadon_bh" EntitySet="hoadon_bh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoadon_bh__manv__7F2BE32F" Association="Self.FK__hoadon_bh__manv__7F2BE32F">
+            <End Role="nhanvien" EntitySet="nhanvien" />
+            <End Role="hoadon_bh" EntitySet="hoadon_bh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoadon_nh__manv__6FE99F9F" Association="Self.FK__hoadon_nh__manv__6FE99F9F">
+            <End Role="nhanvien" EntitySet="nhanvien" />
+            <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hoadon_nh_nhacungcap" Association="Self.FK_hoadon_nh_nhacungcap">
+            <End Role="nhacungcap" EntitySet="nhacungcap" />
+            <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TheWatchersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="chitietbanhang">
+          <Key>
+            <PropertyRef Name="seri" />
+          </Key>
+          <Property Name="seri" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="masp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="stt_hd" Type="Int32" />
+          <NavigationProperty Name="hoadon_bh" Relationship="Self.FK__chitietba__stt_h__29221CFB" FromRole="chitietbanhang" ToRole="hoadon_bh" />
+          <NavigationProperty Name="dongho" Relationship="Self.FK__chitietban__masp__6E01572D" FromRole="chitietbanhang" ToRole="dongho" />
+          <NavigationProperty Name="dongho_seri" Relationship="Self.FK__chitietban__seri__34C8D9D1" FromRole="chitietbanhang" ToRole="dongho_seri" />
+        </EntityType>
+        <EntityType Name="chitietdonhang">
+          <Key>
+            <PropertyRef Name="id_donhang" />
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="id_donhang" Type="Int32" Nullable="false" />
+          <Property Name="masp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="soluong" Type="Int32" />
+          <NavigationProperty Name="donhang" Relationship="Self.FK__chitietdo__id_do__625A9A57" FromRole="chitietdonhang" ToRole="donhang" />
+          <NavigationProperty Name="dongho" Relationship="Self.FK__chitietdon__masp__634EBE90" FromRole="chitietdonhang" ToRole="dongho" />
+        </EntityType>
+        <EntityType Name="chitietnhaphang">
+          <Key>
+            <PropertyRef Name="seri" />
+          </Key>
+          <Property Name="seri" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dongianhap" Type="Double" Nullable="false" />
+          <Property Name="masp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="stt_hd" Type="Int32" />
+          <NavigationProperty Name="hoadon_nh" Relationship="Self.FK__chitietnh__stt_h__2B0A656D" FromRole="chitietnhaphang" ToRole="hoadon_nh" />
+          <NavigationProperty Name="dongho" Relationship="Self.FK__chitietnha__masp__70DDC3D8" FromRole="chitietnhaphang" ToRole="dongho" />
+          <NavigationProperty Name="dongho_seri" Relationship="Self.FK__chitietnha__seri__31EC6D26" FromRole="chitietnhaphang" ToRole="dongho_seri" />
+        </EntityType>
+        <EntityType Name="dongho">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loai" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thuonghieu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dongia" Type="Double" />
+          <Property Name="baohanh" Type="Int32" />
+          <Property Name="id_loai" Type="Int32" />
+          <NavigationProperty Name="chitietbanhangs" Relationship="Self.FK__chitietban__masp__6E01572D" FromRole="dongho" ToRole="chitietbanhang" />
+          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdon__masp__634EBE90" FromRole="dongho" ToRole="chitietdonhang" />
+          <NavigationProperty Name="chitietnhaphangs" Relationship="Self.FK__chitietnha__masp__70DDC3D8" FromRole="dongho" ToRole="chitietnhaphang" />
+          <NavigationProperty Name="loai1" Relationship="Self.FK__dongho__id_loai__4F47C5E3" FromRole="dongho" ToRole="loai" />
+          <NavigationProperty Name="thuonghieu1" Relationship="Self.FK__dongho__thuonghi__1CF15040" FromRole="dongho" ToRole="thuonghieu" />
+          <NavigationProperty Name="dongho_seri" Relationship="Self.FK__dongho_ser__masp__1ED998B2" FromRole="dongho" ToRole="dongho_seri" />
+          <Property Name="act" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="dongho_seri">
+          <Key>
+            <PropertyRef Name="seri" />
+          </Key>
+          <Property Name="masp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="seri" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="chitietbanhang" Relationship="Self.FK__chitietban__seri__34C8D9D1" FromRole="dongho_seri" ToRole="chitietbanhang" />
+          <NavigationProperty Name="chitietnhaphang" Relationship="Self.FK__chitietnha__seri__31EC6D26" FromRole="dongho_seri" ToRole="chitietnhaphang" />
+          <NavigationProperty Name="dongho" Relationship="Self.FK__dongho_ser__masp__1ED998B2" FromRole="dongho_seri" ToRole="dongho" />
+        </EntityType>
+        <EntityType Name="donhang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_kh" Type="Int32" />
+          <Property Name="ngay_dat" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__id_do__625A9A57" FromRole="donhang" ToRole="chitietdonhang" />
+          <NavigationProperty Name="khachhang" Relationship="Self.FK__donhang__id_kh__5224328E" FromRole="donhang" ToRole="khachhang" />
+          <Property Name="stat" Type="Int32" />
+        </EntityType>
+        <EntityType Name="hoadon_bh">
+          <Key>
+            <PropertyRef Name="stt_hd" />
+          </Key>
+          <Property Name="ngaygd" Type="DateTime" Precision="0" />
+          <Property Name="makh" Type="Int32" />
+          <Property Name="manv" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="tongtien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="stt_hd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="chitietbanhangs" Relationship="Self.FK__chitietba__stt_h__29221CFB" FromRole="hoadon_bh" ToRole="chitietbanhang" />
+          <NavigationProperty Name="khachhang" Relationship="Self.FK__hoadon_bh__makh__4CA06362" FromRole="hoadon_bh" ToRole="khachhang" />
+          <NavigationProperty Name="nhanvien" Relationship="Self.FK__hoadon_bh__manv__7F2BE32F" FromRole="hoadon_bh" ToRole="nhanvien" />
+        </EntityType>
+        <EntityType Name="hoadon_nh">
+          <Key>
+            <PropertyRef Name="stt_hd" />
+          </Key>
+          <Property Name="ngaylap" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="manv" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="stt_hd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mancc" Type="Int32" />
+          <NavigationProperty Name="chitietnhaphangs" Relationship="Self.FK__chitietnh__stt_h__2B0A656D" FromRole="hoadon_nh" ToRole="chitietnhaphang" />
+          <NavigationProperty Name="nhanvien" Relationship="Self.FK__hoadon_nh__manv__6FE99F9F" FromRole="hoadon_nh" ToRole="nhanvien" />
+          <NavigationProperty Name="nhacungcap" Relationship="Self.FK_hoadon_nh_nhacungcap" FromRole="hoadon_nh" ToRole="nhacungcap" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="makh" />
+          </Key>
+          <Property Name="tenkh" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="diachi_kh" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sdt_kh" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="makh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="matkhau" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="donhangs" Relationship="Self.FK__donhang__id_kh__5224328E" FromRole="khachhang" ToRole="donhang" />
+          <NavigationProperty Name="hoadon_bh" Relationship="Self.FK__hoadon_bh__makh__4CA06362" FromRole="khachhang" ToRole="hoadon_bh" />
+        </EntityType>
+        <EntityType Name="loai">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_loai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="donghoes" Relationship="Self.FK__dongho__id_loai__4F47C5E3" FromRole="loai" ToRole="dongho" />
+        </EntityType>
+        <EntityType Name="nhacungcap">
+          <Key>
+            <PropertyRef Name="mancc" />
+          </Key>
+          <Property Name="tenncc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="diachi_ncc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sdt_ncc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mancc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="hoadon_nh" Relationship="Self.FK_hoadon_nh_nhacungcap" FromRole="nhacungcap" ToRole="hoadon_nh" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="manv" />
+          </Key>
+          <Property Name="manv" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hotennv" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sdt" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="diachi_bh" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="chucvu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gioitinh" Type="Int32" />
+          <Property Name="ngaybatdau" Type="DateTime" Precision="0" />
+          <Property Name="ngayketthuc" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="hoadon_bh" Relationship="Self.FK__hoadon_bh__manv__7F2BE32F" FromRole="nhanvien" ToRole="hoadon_bh" />
+          <NavigationProperty Name="hoadon_nh" Relationship="Self.FK__hoadon_nh__manv__6FE99F9F" FromRole="nhanvien" ToRole="hoadon_nh" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="thuonghieu">
+          <Key>
+            <PropertyRef Name="thuonghieu1" />
+          </Key>
+          <Property Name="thuonghieu1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="donghoes" Relationship="Self.FK__dongho__thuonghi__1CF15040" FromRole="thuonghieu" ToRole="dongho" />
+        </EntityType>
+        <Association Name="FK__chitietba__stt_h__29221CFB">
+          <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="0..1" />
+          <End Role="chitietbanhang" Type="Self.chitietbanhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoadon_bh">
+              <PropertyRef Name="stt_hd" />
+            </Principal>
+            <Dependent Role="chitietbanhang">
+              <PropertyRef Name="stt_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietban__masp__6E01572D">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="chitietbanhang" Type="Self.chitietbanhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chitietbanhang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietban__seri__34C8D9D1">
+          <End Role="dongho_seri" Type="Self.dongho_seri" Multiplicity="1" />
+          <End Role="chitietbanhang" Type="Self.chitietbanhang" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dongho_seri">
+              <PropertyRef Name="seri" />
+            </Principal>
+            <Dependent Role="chitietbanhang">
+              <PropertyRef Name="seri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietdo__id_do__625A9A57">
+          <End Role="donhang" Type="Self.donhang" Multiplicity="1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donhang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="id_donhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietdon__masp__634EBE90">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietnh__stt_h__2B0A656D">
+          <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="0..1" />
+          <End Role="chitietnhaphang" Type="Self.chitietnhaphang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoadon_nh">
+              <PropertyRef Name="stt_hd" />
+            </Principal>
+            <Dependent Role="chitietnhaphang">
+              <PropertyRef Name="stt_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietnha__masp__70DDC3D8">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="chitietnhaphang" Type="Self.chitietnhaphang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chitietnhaphang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietnha__seri__31EC6D26">
+          <End Role="dongho_seri" Type="Self.dongho_seri" Multiplicity="1" />
+          <End Role="chitietnhaphang" Type="Self.chitietnhaphang" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dongho_seri">
+              <PropertyRef Name="seri" />
+            </Principal>
+            <Dependent Role="chitietnhaphang">
+              <PropertyRef Name="seri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dongho__id_loai__4F47C5E3">
+          <End Role="loai" Type="Self.loai" Multiplicity="0..1" />
+          <End Role="dongho" Type="Self.dongho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loai">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dongho">
+              <PropertyRef Name="id_loai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dongho__thuonghi__1CF15040">
+          <End Role="thuonghieu" Type="Self.thuonghieu" Multiplicity="0..1" />
+          <End Role="dongho" Type="Self.dongho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="thuonghieu">
+              <PropertyRef Name="thuonghieu1" />
+            </Principal>
+            <Dependent Role="dongho">
+              <PropertyRef Name="thuonghieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dongho_ser__masp__1ED998B2">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="dongho_seri" Type="Self.dongho_seri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="dongho_seri">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__donhang__id_kh__5224328E">
+          <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+          <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khachhang">
+              <PropertyRef Name="makh" />
+            </Principal>
+            <Dependent Role="donhang">
+              <PropertyRef Name="id_kh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoadon_bh__makh__4CA06362">
+          <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
+          <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khachhang">
+              <PropertyRef Name="makh" />
+            </Principal>
+            <Dependent Role="hoadon_bh">
+              <PropertyRef Name="makh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoadon_bh__manv__7F2BE32F">
+          <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+          <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhanvien">
+              <PropertyRef Name="manv" />
+            </Principal>
+            <Dependent Role="hoadon_bh">
+              <PropertyRef Name="manv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__hoadon_nh__manv__6FE99F9F">
+          <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+          <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhanvien">
+              <PropertyRef Name="manv" />
+            </Principal>
+            <Dependent Role="hoadon_nh">
+              <PropertyRef Name="manv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hoadon_nh_nhacungcap">
+          <End Role="nhacungcap" Type="Self.nhacungcap" Multiplicity="0..1" />
+          <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nhacungcap">
+              <PropertyRef Name="mancc" />
+            </Principal>
+            <Dependent Role="hoadon_nh">
+              <PropertyRef Name="mancc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheWatchersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chitietbanhangs" EntityType="Self.chitietbanhang" />
+          <EntitySet Name="chitietdonhangs" EntityType="Self.chitietdonhang" />
+          <EntitySet Name="chitietnhaphangs" EntityType="Self.chitietnhaphang" />
+          <EntitySet Name="donghoes" EntityType="Self.dongho" />
+          <EntitySet Name="dongho_seri" EntityType="Self.dongho_seri" />
+          <EntitySet Name="donhangs" EntityType="Self.donhang" />
+          <EntitySet Name="hoadon_bh" EntityType="Self.hoadon_bh" />
+          <EntitySet Name="hoadon_nh" EntityType="Self.hoadon_nh" />
+          <EntitySet Name="khachhangs" EntityType="Self.khachhang" />
+          <EntitySet Name="loais" EntityType="Self.loai" />
+          <EntitySet Name="nhacungcaps" EntityType="Self.nhacungcap" />
+          <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="thuonghieux" EntityType="Self.thuonghieu" />
+          <AssociationSet Name="FK__chitietba__stt_h__29221CFB" Association="Self.FK__chitietba__stt_h__29221CFB">
+            <End Role="hoadon_bh" EntitySet="hoadon_bh" />
+            <End Role="chitietbanhang" EntitySet="chitietbanhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietban__masp__6E01572D" Association="Self.FK__chitietban__masp__6E01572D">
+            <End Role="dongho" EntitySet="donghoes" />
+            <End Role="chitietbanhang" EntitySet="chitietbanhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietban__seri__34C8D9D1" Association="Self.FK__chitietban__seri__34C8D9D1">
+            <End Role="dongho_seri" EntitySet="dongho_seri" />
+            <End Role="chitietbanhang" EntitySet="chitietbanhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietdo__id_do__625A9A57" Association="Self.FK__chitietdo__id_do__625A9A57">
+            <End Role="donhang" EntitySet="donhangs" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietdon__masp__634EBE90" Association="Self.FK__chitietdon__masp__634EBE90">
+            <End Role="dongho" EntitySet="donghoes" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietnh__stt_h__2B0A656D" Association="Self.FK__chitietnh__stt_h__2B0A656D">
+            <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+            <End Role="chitietnhaphang" EntitySet="chitietnhaphangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietnha__masp__70DDC3D8" Association="Self.FK__chitietnha__masp__70DDC3D8">
+            <End Role="dongho" EntitySet="donghoes" />
+            <End Role="chitietnhaphang" EntitySet="chitietnhaphangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietnha__seri__31EC6D26" Association="Self.FK__chitietnha__seri__31EC6D26">
+            <End Role="dongho_seri" EntitySet="dongho_seri" />
+            <End Role="chitietnhaphang" EntitySet="chitietnhaphangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dongho__id_loai__4F47C5E3" Association="Self.FK__dongho__id_loai__4F47C5E3">
+            <End Role="loai" EntitySet="loais" />
+            <End Role="dongho" EntitySet="donghoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dongho__thuonghi__1CF15040" Association="Self.FK__dongho__thuonghi__1CF15040">
+            <End Role="thuonghieu" EntitySet="thuonghieux" />
+            <End Role="dongho" EntitySet="donghoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dongho_ser__masp__1ED998B2" Association="Self.FK__dongho_ser__masp__1ED998B2">
+            <End Role="dongho" EntitySet="donghoes" />
+            <End Role="dongho_seri" EntitySet="dongho_seri" />
+          </AssociationSet>
+          <AssociationSet Name="FK__donhang__id_kh__5224328E" Association="Self.FK__donhang__id_kh__5224328E">
+            <End Role="khachhang" EntitySet="khachhangs" />
+            <End Role="donhang" EntitySet="donhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoadon_bh__makh__4CA06362" Association="Self.FK__hoadon_bh__makh__4CA06362">
+            <End Role="khachhang" EntitySet="khachhangs" />
+            <End Role="hoadon_bh" EntitySet="hoadon_bh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoadon_bh__manv__7F2BE32F" Association="Self.FK__hoadon_bh__manv__7F2BE32F">
+            <End Role="nhanvien" EntitySet="nhanviens" />
+            <End Role="hoadon_bh" EntitySet="hoadon_bh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__hoadon_nh__manv__6FE99F9F" Association="Self.FK__hoadon_nh__manv__6FE99F9F">
+            <End Role="nhanvien" EntitySet="nhanviens" />
+            <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hoadon_nh_nhacungcap" Association="Self.FK_hoadon_nh_nhacungcap">
+            <End Role="nhacungcap" EntitySet="nhacungcaps" />
+            <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TheWatchersModelStoreContainer" CdmEntityContainer="TheWatchersEntities">
+          <EntitySetMapping Name="chitietbanhangs">
+            <EntityTypeMapping TypeName="TheWatchersModel.chitietbanhang">
+              <MappingFragment StoreEntitySet="chitietbanhang">
+                <ScalarProperty Name="seri" ColumnName="seri" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="stt_hd" ColumnName="stt_hd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitietdonhangs">
+            <EntityTypeMapping TypeName="TheWatchersModel.chitietdonhang">
+              <MappingFragment StoreEntitySet="chitietdonhang">
+                <ScalarProperty Name="id_donhang" ColumnName="id_donhang" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitietnhaphangs">
+            <EntityTypeMapping TypeName="TheWatchersModel.chitietnhaphang">
+              <MappingFragment StoreEntitySet="chitietnhaphang">
+                <ScalarProperty Name="seri" ColumnName="seri" />
+                <ScalarProperty Name="dongianhap" ColumnName="dongianhap" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="stt_hd" ColumnName="stt_hd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donghoes">
+            <EntityTypeMapping TypeName="TheWatchersModel.dongho">
+              <MappingFragment StoreEntitySet="dongho">
+                <ScalarProperty Name="act" ColumnName="act" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="loai" ColumnName="loai" />
+                <ScalarProperty Name="thuonghieu" ColumnName="thuonghieu" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+                <ScalarProperty Name="baohanh" ColumnName="baohanh" />
+                <ScalarProperty Name="id_loai" ColumnName="id_loai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dongho_seri">
+            <EntityTypeMapping TypeName="TheWatchersModel.dongho_seri">
+              <MappingFragment StoreEntitySet="dongho_seri">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="seri" ColumnName="seri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donhangs">
+            <EntityTypeMapping TypeName="TheWatchersModel.donhang">
+              <MappingFragment StoreEntitySet="donhang">
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_kh" ColumnName="id_kh" />
+                <ScalarProperty Name="ngay_dat" ColumnName="ngay_dat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hoadon_bh">
+            <EntityTypeMapping TypeName="TheWatchersModel.hoadon_bh">
+              <MappingFragment StoreEntitySet="hoadon_bh">
+                <ScalarProperty Name="ngaygd" ColumnName="ngaygd" />
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="manv" ColumnName="manv" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+                <ScalarProperty Name="stt_hd" ColumnName="stt_hd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hoadon_nh">
+            <EntityTypeMapping TypeName="TheWatchersModel.hoadon_nh">
+              <MappingFragment StoreEntitySet="hoadon_nh">
+                <ScalarProperty Name="ngaylap" ColumnName="ngaylap" />
+                <ScalarProperty Name="manv" ColumnName="manv" />
+                <ScalarProperty Name="stt_hd" ColumnName="stt_hd" />
+                <ScalarProperty Name="mancc" ColumnName="mancc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khachhangs">
+            <EntityTypeMapping TypeName="TheWatchersModel.khachhang">
+              <MappingFragment StoreEntitySet="khachhang">
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+                <ScalarProperty Name="diachi_kh" ColumnName="diachi_kh" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="sdt_kh" ColumnName="sdt_kh" />
+                <ScalarProperty Name="makh" ColumnName="makh" />
+                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loais">
+            <EntityTypeMapping TypeName="TheWatchersModel.loai">
+              <MappingFragment StoreEntitySet="loai">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten_loai" ColumnName="ten_loai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhacungcaps">
+            <EntityTypeMapping TypeName="TheWatchersModel.nhacungcap">
+              <MappingFragment StoreEntitySet="nhacungcap">
+                <ScalarProperty Name="tenncc" ColumnName="tenncc" />
+                <ScalarProperty Name="diachi_ncc" ColumnName="diachi_ncc" />
+                <ScalarProperty Name="sdt_ncc" ColumnName="sdt_ncc" />
+                <ScalarProperty Name="mancc" ColumnName="mancc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhanviens">
+            <EntityTypeMapping TypeName="TheWatchersModel.nhanvien">
+              <MappingFragment StoreEntitySet="nhanvien">
+                <ScalarProperty Name="manv" ColumnName="manv" />
+                <ScalarProperty Name="hotennv" ColumnName="hotennv" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="diachi_bh" ColumnName="diachi_bh" />
+                <ScalarProperty Name="chucvu" ColumnName="chucvu" />
+                <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+                <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+                <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TheWatchersModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thuonghieux">
+            <EntityTypeMapping TypeName="TheWatchersModel.thuonghieu">
+              <MappingFragment StoreEntitySet="thuonghieu">
+                <ScalarProperty Name="thuonghieu1" ColumnName="thuonghieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

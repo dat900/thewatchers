@@ -1,0 +1,43 @@
+﻿@using TheWatchers.Models;
+@Model List<Cart>;
+@{
+	ViewBag.Title = "Checkout";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+<!--List in cart-->
+<table class="table">
+	<tr>
+		<th>ID</th>
+		<th>Tên ĐH</th>
+		<th>SL</th>
+		<th>Giá</th>
+	</tr>
+	@foreach (Cart c in Model)
+	{
+		<tr>
+			<td></td>
+			<td>@c.iTenDH</td>
+			<td>@c.iSoluong</td>
+			<td>@c.iThanhtien</td>
+		</tr>
+	}
+	<!--Tinh tổng-->
+</table>
+
+<!--cus info-->
+@using (Html.BeginForm("check_out", "Order", new { @class = "form-inline" }))
+{
+	<h2>Thông tin khách hàng</h2>
+	<label>Họ và tên:</label>
+	<input type="text" placeholder="Họ tên" name="name" class="form-control" />
+	<label>Số điện thoại:</label>
+	<input type="tel" placeholder="Số điện thoại" name="phone_num" class="form-control"/>
+	<label>Địa chỉ giao hàng:</label>
+	<input type="text" id="address" class="form-control"/>
+	<label>Địa chỉ khác:</label>
+	<input type="text" class="form-control" />
+	<br />
+	<input type="submit" value="Payment" class="btn btn-lg btn-brand btn-full-width" id="btnAddToCart" />
+}

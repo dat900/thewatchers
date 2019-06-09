@@ -1,0 +1,68 @@
+﻿@using TheWatchers.Areas.admin.Models;
+@model List<Order>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+@*<p>
+	@Html.ActionLink("Create New", "Create")
+</p>*@
+<style>
+	.table td{
+		width: auto;
+	}
+</style>
+<table class="table">
+	<tr>
+		<th>
+			ID
+		</th>
+		<th>
+			Khách hàng
+		</th>
+		<th>
+			Ngày đặt
+		</th>
+		<th>
+			Tình trạng
+		</th>
+		<th>
+			Thao tác
+		</th>
+	</tr>
+
+	@foreach (Order item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.id)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.kh)
+			</td>
+			<td style="width: 200px;">
+				@Html.DisplayFor(modelItem => item.day)
+			</td>
+			
+				@if (item.status == -1) {
+					<td>Bị hủy</td> }
+				else if (item.status == 0) {
+					<td>Đang xử lý</td> }
+				else { <td>Đã giao hàng</td>}
+			
+			@*<td>
+				@Html.DisplayFor(modelItem => item.soluong)
+			</td>*@
+					   <td>
+					   	@Html.ActionLink("Details", "Order_detail", new { @id_dh = item.id })
+					   @if (item.status != -1)
+					   {
+					   	<span>|</span> @Html.ActionLink("Delete", "DeleteOrder", new { @id_dh = item.id, @url = Request.Url.ToString() })
+					}
+						</td>
+				   
+					   
+		</tr>
+	}
+
+</table>

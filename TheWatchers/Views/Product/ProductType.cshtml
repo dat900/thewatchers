@@ -1,0 +1,34 @@
+﻿@using TheWatchers.Models
+@{
+	ViewBag.Title = "ProductType";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<dongho>
+@if (Model == null)
+{
+	<h2>Không tìm thấy sản phẩm loại này</h2>
+}
+else
+{
+	<h2>Đã tìm thấy @Model.Count sản phẩm </h2>
+	<div class=" card-group">
+		@foreach (dongho item in Model)
+		{
+
+			<div class="card mt-1" style="width: 300px; ">
+				<img class="img-top p-1" src="~/Models/Images/img-1.jpg" alt="watches" style="width:180px;height:200px">
+				<div class="card-body">
+					<h4 class="card-title">@item.tensp</h4>
+					<p class="card-text">@item.thuonghieu</p>
+					<p class="card-text">@item.dongia</p>
+					<a class="card-link" href="@Url.Action("ProductDetail", new { @madh = item.masp }) ">Xem chi tiết</a>
+					@using (Html.BeginForm("AddToCart", "Cart", new { @MaDH = item.masp, @Url = Request.Url }))
+					{
+						<input type="submit" value="Add To Cart" class="btn btn-lg btn-brand btn-full-width" id="btnAddToCart" />
+					}
+				</div>
+			</div>
+		}
+	</div>
+}
+

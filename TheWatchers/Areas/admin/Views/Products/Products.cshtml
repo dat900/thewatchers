@@ -1,0 +1,72 @@
+﻿@using TheWatchers.Areas.admin.Models;
+@model List<Product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+	<h2>Products</h2>
+
+	<p>
+		@Html.ActionLink("Create New", "Create")
+	</p>
+	<table class="table">
+		<tr>
+			<th>
+				Tên đồng hồ
+			</th>
+			<th>
+				Thương hiệu
+			</th>
+			<th>
+				Loại
+			</th>
+			<th>
+				Giá
+			</th>
+			<th>Thay đổi</th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td style="width:250px;">
+					@Html.DisplayFor(modelItem => item.tendh)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.thuonghieudh)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.loaidh)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.gia)
+				</td>
+				<td>
+					@Html.ActionLink("Details", "Prd_detail", new { @tendh = item.tendh }) |
+					@Html.ActionLink("Delete", "Delete_Product", new { @tendh = item.tendh, @url = Request.Url.ToString() }, new Dictionary<string, object> { { "data-toogle", "modal" }, { "data-target", "#exampleModal" } })
+				</td>
+			</tr>
+		}
+
+	</table>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa sản phẩm</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Bạn có chắc chắn xóa sản phẩm này không</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+					<button type="button" class="btn btn-primary">Có</button>
+				</div>
+			</div>
+		</div>
+	</div>

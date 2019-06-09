@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Prd_detail";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+@using TheWatchers.Models;
+@model dongho
+<h2>Prd_detail</h2>
+<style>
+	div label {
+		width: 100px;
+		
+	}
+</style>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div class="form">
+		<hr />
+		@Html.ValidationSummary(true,"",new { @class = "text-danger" })
+		<div class="form-group">
+			<label>Tên SP:</label>
+			@Html.EditorFor(model=>model.tensp,new { htmlAttributes = new { @class = "form-control" } })
+		</div>
+		<div class="form-group">
+			<label>Thương hiệu:</label>
+			@Html.EditorFor(model=>model.thuonghieu, new { htmlAtributes = new { @class = "form-control" } })
+		</div>
+		<div class="form-group">
+			<label>Loại:</label>
+			@Html.EditorFor(model => model.loai, new { htmlAtributes = new { @class = "form-control" } })
+		</div>
+		<div class="form-group">
+			<label>Bảo hành:</label>
+			@Html.EditorFor(model=>model.baohanh, new { htmlAtributes = new { @class = "form-control" } }) <span> Năm</span>
+		</div>
+		<div class="form-group">
+			<label>Giá:</label>
+			@Html.EditorFor(model=>model.dongia , new { htmlAtributes = new { @class = "form-control" } }) <span>đ</span>
+		</div>
+		<div class="form-group">
+			<button>@Html.ActionLink("Lưu","Edit_Prd","Product", new { @url = Request.Url.ToString() })</button>
+		</div>
+	</div>
+}

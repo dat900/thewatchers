@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f33dc0132a184f3389478dfdab36c3b5" Name="Diagram1">
+        <EntityTypeShape EntityType="TheWatchersModel.chitietbanhang" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.chitietdonhang" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.chitietnhaphang" Width="1.5" PointX="7.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.dongho" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.dongho_seri" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.donhang" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.hoadon_bh" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.hoadon_nh" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.khachhang" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.loai" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.nhacungcap" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.nhanvien" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheWatchersModel.thuonghieu" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietba__stt_h__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietban__masp__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietban__seri__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietdo__id_do__625A9A57" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietdon__masp__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietnh__stt_h__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietnha__masp__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__chitietnha__seri__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__dongho__id_loai__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__dongho__thuonghi__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__dongho_ser__masp__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__donhang__id_kh__5224328E" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__hoadon_bh__makh__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__hoadon_bh__manv__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK__hoadon_nh__manv__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="TheWatchersModel.FK_hoadon_nh_nhacungcap" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

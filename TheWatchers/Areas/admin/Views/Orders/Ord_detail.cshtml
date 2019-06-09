@@ -1,0 +1,18 @@
+﻿@Model TheWatchers.Area.Admin.Models.Ord_detail
+@{
+    ViewBag.Title = "Ord_detail";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ord_detail</h2>
+
+<h1>Mã ĐH:</h1>
+<p>@Model.id</p><br />
+<h1>Tên ĐH:</h1>
+<p>@Model.w_name</p><br />
+<h1>Thương hiệu:</h1>
+<p>@Model.w_brand</p><br />
+<h1>Số lượng:</h1>
+<p>@Model.w_count</p>
+<h1>Giá</h1>
+<p>@Model.w_price</p>
