@@ -20,7 +20,7 @@ namespace TheWatchers.Controllers
             }
             return PartialView();
         }
-        
+        [HttpGet]
         public ActionResult Register()
         {
             return View();
@@ -38,10 +38,10 @@ namespace TheWatchers.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(FormCollection f)
+        public ActionResult login(LoginModel model)
         {
-            int username = int.Parse(f["txtUsername"].ToString());
-            string pass = f["txtPass"].ToString();
+            int username = model.username;
+            string pass = model.password;
             khachhang kh = db.khachhangs.SingleOrDefault(n => n.makh == username || n.matkhau == pass);
             if (null != kh)
             {
@@ -49,7 +49,10 @@ namespace TheWatchers.Controllers
                 Session["Taikhoan"] = kh;
                 return RedirectToAction("Index","Home");
             }
-            ViewBag.Thongbao = "Tài khoản không đúng";
+            else
+            {
+                ModelState.AddModelError("","Đăng nhập không thành công");
+            }
             return View();
         }
         public ActionResult Info(int makh)

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TheWatchers.Models;
+using TheWatchers.Models.DAO;
 
 namespace TheWatchers.Controllers
 {
     public class OrderController : Controller
     {
-        TheWatchersEntities db = new TheWatchersEntities();
+        //TheWatchersEntities db = new TheWatchersEntities();
         // GET: Order
         public ActionResult Checkout()
         {
@@ -20,43 +21,33 @@ namespace TheWatchers.Controllers
         [HttpPost]
         public int find_cus(string hoten, string sdt)
         {
-            int kh_check = -2;
-            kh_check = db.khachhangs.Where(n => (n.tenkh == hoten) && (n.sdt_kh == sdt)).SingleOrDefault().makh;
-            if (kh_check <=0)
+            khachhang kh = DAO_user.getCusByNameandPhone(hoten, sdt);
+            if (kh == null)
             {
-                khachhang kh = new khachhang();
+                kh = new khachhang();
                 kh.tenkh = hoten;
                 kh.sdt_kh = sdt;
-                db.khachhangs.Add(kh);
-                db.SaveChanges();
-                return db.khachhangs.LastOrDefault().makh;
+                DAO_user.addUser(kh);
+                return DAO_user.getAllCus().Count -1;
             }
-            return kh_check;
+            return kh.makh;
         }
         public void check_out(FormCollection form)
         {
             donhang dhg = new donhang();
-            dhg.id_kh = find_cus(form.Get("name"), form.Get("phone_num"));
+            dhg.id_kh = DAO_user.getCusByNameandPhone(form.Get("name"), form.Get("phone_num")).makh;
             dhg.ngay_dat = DateTime.Now.Date;
             //Lay thong tin dong trong cart de luu
             List<Cart> cart = Session["Cart"] as List<Cart>;
-            db.donhangs.Add(dhg);
-            db.SaveChanges();
+            DAO_order.addOrder(dhg);
             chitietdonhang ctdh = new chitietdonhang();
             foreach (Cart c in cart)
             {
                 ctdh.donhang = dhg;
                 ctdh.masp = c.idmadh;
                 ctdh.soluong = c.iSoluong;
-                db.chitietdonhangs.Add(ctdh);
+                DAO_orderdetail.addOrderDetail(ctdh);
             }
-            
-            db.SaveChanges();
-        }
-        public ActionResult Payment()
-        {
-
-            return View();
         }
     }
     

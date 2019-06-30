@@ -21,7 +21,7 @@ else
 					<h4 class="card-title">@item.tensp</h4>
 					<p class="card-text">@item.thuonghieu</p>
 					<p class="card-text">@item.dongia</p>
-					<a class="card-link" href="@Url.Action("ProductDetail", new { @madh = item.masp }) ">Xem chi tiết</a>
+					<a class="card-link" href=@Url.Action("ProductDetail", new { @madh = item.masp }) >Xem chi tiết</a>
 					@using (Html.BeginForm("AddToCart", "Cart", new { @MaDH = item.masp, @Url = Request.Url }))
 					{
 						<input type="submit" value="Add To Cart" class="btn btn-lg btn-brand btn-full-width" id="btnAddToCart" />

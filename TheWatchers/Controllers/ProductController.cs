@@ -6,16 +6,17 @@ using System.Web.Mvc;
 using TheWatchers.Models;
 using PagedList.Mvc;
 using PagedList;
+using TheWatchers.Models.DAO;
 namespace TheWatchers.Controllers
 {
     public class ProductController : Controller
     {
         // GET: Product
-        TheWatchersEntities db = new TheWatchersEntities();
+        //TheWatchersEntities db = new TheWatchersEntities();
         public PartialViewResult NewWatchesPartial()
         {
-            
-            return PartialView(db.donghoes.OrderBy(n=>n.masp).Take(3).ToList());
+            List<dongho> list_new = DAO_product.getNewProducts(3);
+            return PartialView();
         }
         public ActionResult ProductType(string Name)
         {
@@ -24,12 +25,12 @@ namespace TheWatchers.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            List<dongho> dhs = db.loais.Where(n => n.ten_loai == Name).Select(n => n.donghoes) as List<dongho>;
+            List<dongho> dhs = DAO_product.getByType(Name);
             return View(dhs);
         }
         public ActionResult ProductDetail(string  madh)
         {
-            dongho dh = db.donghoes.SingleOrDefault(n => n.masp == madh);
+            dongho dh = DAO_product.get(madh);
             if(dh == null)
             {
                 Response.StatusCode = 404;
@@ -40,12 +41,10 @@ namespace TheWatchers.Controllers
         [HttpPost]
         public ActionResult Search(FormCollection form, int? page)
         {
-            int pageSize = 7;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
             string sKey = form["keysearch"].ToString();
-            
-            
-            IPagedList<dongho> lstkq = db.donghoes.Where(n => n.tensp.Contains(sKey)).OrderBy(n=>n.tensp).ToPagedList(pageNumber, pageSize);
+            IPagedList<dongho> lstkq = DAO_product.getByName(sKey).ToPagedList(pageNumber, pageSize);
             if (lstkq.Count == 0)
             {
                 ViewBag.Thongbao = "Không tìm thấy sản phẩm nào";

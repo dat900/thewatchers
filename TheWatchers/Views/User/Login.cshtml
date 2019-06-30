@@ -1,21 +1,22 @@
 ﻿
+@model TheWatchers.Models.LoginModel
 @{
 	ViewBag.Title = "Login";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Login</h2>
-
-@using (Html.BeginForm("Login","User",FormMethod.Post))
+@Html.ValidationSummary()
+@using (Html.BeginForm("login", "User", FormMethod.Post))
 {
 	<label>Tên đăng nhập:</label>
 	<br />
-	@Html.TextBox("txtUsername","",new { @class = "form-control" });
+	@Html.TextBoxFor(Model =>Model.username, "", new { @class = "form-control" });
 	<br />
 	<label>Mật khẩu:</label>
 	<br />
-	@Html.TextBox("txtPass","", new { @class = "form-control" });
+	@Html.TextBoxFor(Model => Model.password, "", new { @class = "form-control" });
 	<br />
+	@Html.CheckBoxFor(Model => Model.rememberme, new { @class = "form-control" });
 	<input type="submit" class="form-control btn btn-light" value="Đăng nhập" />
 }
 

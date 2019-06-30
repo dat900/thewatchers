@@ -5,51 +5,35 @@ using System.Web;
 using TheWatchers.Models;
 using TheWatchers.Areas.admin.Models;
 using System.Web.Mvc;
+using TheWatchers.Models.DAO;
 
 namespace TheWatchers.Areas.admin.Controllers
 {
     public class ProductsController : Controller
     {
         // GET: admin/Product
-        TheWatchersEntities db = new TheWatchersEntities();
+        //TheWatchersEntities db = new TheWatchersEntities();
         public ActionResult Products()
         {
-
-            var products = from dh in db.donghoes
-                           where dh.act == true
-                           select new Product
-                           {
-                               tendh = dh.tensp,
-                               thuonghieudh = dh.thuonghieu,
-                               loaidh = dh.loai,
-                               gia = dh.dongia
-                           };
-            return View(products.ToList());
+            List<dongho> list_new_prod = DAO_product.getAll();
+            return View(list_new_prod);
         }
         public ActionResult Delete_Product(string tendh, string url)
         {
-            var check_dh = db.donghoes.Where(n => n.tensp == tendh).FirstOrDefault();
-            check_dh.act = false;
-            db.Entry(check_dh);
-            db.SaveChanges();
+            dongho check_dh = DAO_product.getByName(tendh).First();
+            if (check_dh != null) DAO_product.delete(check_dh);
             return Redirect(url);
         }
         public ActionResult Edit_Prd(dongho dh, string url)
         {
-            db.Entry(dh);
-            db.SaveChanges();
+            DAO_product.update(dh);
             return Redirect(url);
         }
         public ActionResult Prd_detail(string tendh)
         {
-            var product = db.donghoes.Where(n => n.tensp == tendh).FirstOrDefault();
-            if (product == null)
-            {
-                Response.StatusCode = 404;
-            }
+            dongho product = DAO_product.getByName(tendh).First();
             product.dongia *= 1000;
             return View(product);
         }
-
     }
 }
