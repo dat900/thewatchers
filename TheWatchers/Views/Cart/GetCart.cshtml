@@ -6,7 +6,11 @@
 }
 
 <h2>Giỏ hàng</h2>
-
+<script>
+	$(function () {
+		$('#spinner').spinner();
+	});
+</script>
 @*<p>
 		@Html.ActionLink("Create New", "Create")
 	</p>*@
@@ -37,19 +41,18 @@
 				@Html.DisplayFor(modelItem => item.iThuonghieu)
 			</td>
 			<td>
-				<form>
-					<input type="number" id="txtsoluong" value=@item.iSoluong />
-				</form>
-				@*@Html.DisplayFor(modelItem => item.iSoluong)*@
+				@Html.EditorFor(modelItem => item.iSoluong)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.iDongia)
 			</td>
 			<td>
-				@using (Html.BeginForm("UpdateCart", "Cart", new { @map = item.idmadh, @Url = Request.Url }))
+				@Html.ActionLink("Update","UpdateCart",new { @cart = item, @Url = Request.Url.ToString() })
+				<button type="button" name="Update" id="btnUpdate"></button>
+				@*@using (Html.BeginForm("UpdateCart", "Cart", new { @map = item.idmadh, @Url = Request.Url.ToString() }))
 				{
 					<input type="submit" value="Update" class="form-inline" id="btnAddToCart" />
-				}|
+				}*@|
 
 				@*@Html.ActionLink("Details", "Details", new { id=item.idmadh }) |*@
 				@Html.ActionLink("Delete", "DeleteCart", new { @MaDH = item.idmadh, @Url = Request.Url })
@@ -64,4 +67,7 @@
 		<button type="submit" id="btnThanhtoan" class="btn btn-lg btn-danger">THANH TOÁN</button>
 	</form>
 }
+<script>
+
+</script>
 

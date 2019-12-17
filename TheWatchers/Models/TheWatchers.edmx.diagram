@@ -35,6 +35,10 @@
         <AssociationConnector Association="TheWatchersModel.FK__hoadon_bh__manv__7F2BE32F" ManuallyRouted="false" />
         <AssociationConnector Association="TheWatchersModel.FK__hoadon_nh__manv__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="TheWatchersModel.FK_hoadon_nh_nhacungcap" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TheWatchersModel.hinhanh" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="TheWatchersModel.motachitiet" Width="1.5" PointX="5.25" PointY="8.75" />
+        <AssociationConnector Association="TheWatchersModel.FK__hinhanh__masp__2EA5EC27" />
+        <AssociationConnector Association="TheWatchersModel.FK__motachitie__masp__1B9317B3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

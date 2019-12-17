@@ -11,11 +11,12 @@
 else
 {
 	<h2>Đã tìm thấy @Model.Count sản phẩm </h2>
-	<div class=" card-group">
+	<h2>Đồng hồ @ViewBag.Name</h2>
+	<div>
 		@foreach (dongho item in Model)
 		{
 
-			<div class="card mt-1" style="width: 300px; ">
+			<div class="card mt-1 d-inline-block" style="width: 350px;position:center ">
 				<img class="img-top p-1" src="~/Models/Images/img-1.jpg" alt="watches" style="width:180px;height:200px">
 				<div class="card-body">
 					<h4 class="card-title">@item.tensp</h4>
@@ -28,6 +29,7 @@ else
 					}
 				</div>
 			</div>
+			
 		}
 	</div>
 }

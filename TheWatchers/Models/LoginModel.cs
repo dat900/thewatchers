@@ -11,9 +11,11 @@ namespace TheWatchers.Models
     public class LoginModel
     {
         [Key]
+        [Required]
         [DisplayName("User Name")]
         public int username { set; get; }
         [DisplayName("Password")]
+        [Required]
         public string password { get; set;}
         [DisplayName("Remember Me")]
         public bool rememberme { get; set; }

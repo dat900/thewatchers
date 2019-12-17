@@ -46,7 +46,7 @@
 					<li class="nav-item">
 						@using (Html.BeginForm("Search", "Product", FormMethod.Post,new {@class = "form-inline"}))
 						{
-							<input type="search" class="form-control mr-sm-1" id="keysearch" />
+							<input type="text" class="form-control mr-sm-1" name="keysearch" />
 							<button type="submit" class="btn btn-light my-sm-0 mr-sm-4"><i class="fa fa-search" aria-hidden="true" id="sch-button"></i>Search</button>
 						}
 					</li>

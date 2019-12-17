@@ -5,7 +5,7 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Login</h2>
-@Html.ValidationSummary()
+@Html.ValidationSummary(false, "Đăng nhập không thành công", new { @class = "text-danger" })
 @using (Html.BeginForm("login", "User", FormMethod.Post))
 {
 	<label>Tên đăng nhập:</label>
@@ -14,7 +14,7 @@
 	<br />
 	<label>Mật khẩu:</label>
 	<br />
-	@Html.TextBoxFor(Model => Model.password, "", new { @class = "form-control" });
+	@Html.PasswordFor(Model => Model.password, new { @class = "form-control" });
 	<br />
 	@Html.CheckBoxFor(Model => Model.rememberme, new { @class = "form-control" });
 	<input type="submit" class="form-control btn btn-light" value="Đăng nhập" />

@@ -21,6 +21,7 @@ namespace TheWatchers.Models
             this.chitietdonhangs = new HashSet<chitietdonhang>();
             this.chitietnhaphangs = new HashSet<chitietnhaphang>();
             this.dongho_seri = new HashSet<dongho_seri>();
+            this.hinhanhs = new HashSet<hinhanh>();
         }
     
         public string masp { get; set; }
@@ -42,5 +43,8 @@ namespace TheWatchers.Models
         public virtual thuonghieu thuonghieu1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dongho_seri> dongho_seri { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<hinhanh> hinhanhs { get; set; }
+        public virtual motachitiet motachitiet { get; set; }
     }
 }

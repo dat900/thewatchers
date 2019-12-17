@@ -58,7 +58,15 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_kh" Type="int" />
           <Property Name="ngay_dat" Type="date" Nullable="false" />
-          <Property Name="stat" Type="int" />
+          <Property Name="stat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hinhanh">
+          <Key>
+            <PropertyRef Name="id_hinhanh" />
+          </Key>
+          <Property Name="id_hinhanh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masp" Type="varchar" MaxLength="6" />
+          <Property Name="duongdan" Type="ntext" Nullable="false" />
         </EntityType>
         <EntityType Name="hoadon_bh">
           <Key>
@@ -96,6 +104,16 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ten_loai" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="motachitiet">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="mausac" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="baohanh" Type="int" />
+          <Property Name="khung" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mota" Type="ntext" />
         </EntityType>
         <EntityType Name="nhacungcap">
           <Key>
@@ -279,6 +297,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__hinhanh__masp__2EA5EC27">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="0..1" />
+          <End Role="hinhanh" Type="Self.hinhanh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="hinhanh">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__hoadon_bh__makh__4CA06362">
           <End Role="khachhang" Type="Self.khachhang" Multiplicity="0..1" />
           <End Role="hoadon_bh" Type="Self.hoadon_bh" Multiplicity="*" />
@@ -315,6 +345,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__motachitie__masp__1B9317B3">
+          <End Role="dongho" Type="Self.dongho" Multiplicity="1" />
+          <End Role="motachitiet" Type="Self.motachitiet" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="motachitiet">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_hoadon_nh_nhacungcap">
           <End Role="nhacungcap" Type="Self.nhacungcap" Multiplicity="0..1" />
           <End Role="hoadon_nh" Type="Self.hoadon_nh" Multiplicity="*" />
@@ -334,10 +376,12 @@
           <EntitySet Name="dongho" EntityType="Self.dongho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="dongho_seri" EntityType="Self.dongho_seri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="donhang" EntityType="Self.donhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hinhanh" EntityType="Self.hinhanh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hoadon_bh" EntityType="Self.hoadon_bh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hoadon_nh" EntityType="Self.hoadon_nh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="loai" EntityType="Self.loai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="motachitiet" EntityType="Self.motachitiet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nhacungcap" EntityType="Self.nhacungcap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -390,6 +434,10 @@
             <End Role="khachhang" EntitySet="khachhang" />
             <End Role="donhang" EntitySet="donhang" />
           </AssociationSet>
+          <AssociationSet Name="FK__hinhanh__masp__2EA5EC27" Association="Self.FK__hinhanh__masp__2EA5EC27">
+            <End Role="dongho" EntitySet="dongho" />
+            <End Role="hinhanh" EntitySet="hinhanh" />
+          </AssociationSet>
           <AssociationSet Name="FK__hoadon_bh__makh__4CA06362" Association="Self.FK__hoadon_bh__makh__4CA06362">
             <End Role="khachhang" EntitySet="khachhang" />
             <End Role="hoadon_bh" EntitySet="hoadon_bh" />
@@ -401,6 +449,10 @@
           <AssociationSet Name="FK__hoadon_nh__manv__6FE99F9F" Association="Self.FK__hoadon_nh__manv__6FE99F9F">
             <End Role="nhanvien" EntitySet="nhanvien" />
             <End Role="hoadon_nh" EntitySet="hoadon_nh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__motachitie__masp__1B9317B3" Association="Self.FK__motachitie__masp__1B9317B3">
+            <End Role="dongho" EntitySet="dongho" />
+            <End Role="motachitiet" EntitySet="motachitiet" />
           </AssociationSet>
           <AssociationSet Name="FK_hoadon_nh_nhacungcap" Association="Self.FK_hoadon_nh_nhacungcap">
             <End Role="nhacungcap" EntitySet="nhacungcap" />
@@ -463,6 +515,8 @@
           <NavigationProperty Name="thuonghieu1" Relationship="Self.FK__dongho__thuonghi__1CF15040" FromRole="dongho" ToRole="thuonghieu" />
           <NavigationProperty Name="dongho_seri" Relationship="Self.FK__dongho_ser__masp__1ED998B2" FromRole="dongho" ToRole="dongho_seri" />
           <Property Name="act" Type="Boolean" />
+          <NavigationProperty Name="hinhanhs" Relationship="TheWatchersModel.FK__hinhanh__masp__2EA5EC27" FromRole="dongho" ToRole="hinhanh" />
+          <NavigationProperty Name="motachitiet" Relationship="TheWatchersModel.FK__motachitie__masp__1B9317B3" FromRole="dongho" ToRole="motachitiet" />
         </EntityType>
         <EntityType Name="dongho_seri">
           <Key>
@@ -483,7 +537,7 @@
           <Property Name="ngay_dat" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__id_do__625A9A57" FromRole="donhang" ToRole="chitietdonhang" />
           <NavigationProperty Name="khachhang" Relationship="Self.FK__donhang__id_kh__5224328E" FromRole="donhang" ToRole="khachhang" />
-          <Property Name="stat" Type="Int32" />
+          <Property Name="stat" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="hoadon_bh">
           <Key>
@@ -844,7 +898,61 @@
             <End Role="nhacungcap" EntitySet="nhacungcaps" />
             <End Role="hoadon_nh" EntitySet="hoadon_nh" />
           </AssociationSet>
+          <EntitySet Name="hinhanhs" EntityType="TheWatchersModel.hinhanh" />
+          <EntitySet Name="motachitiets" EntityType="TheWatchersModel.motachitiet" />
+          <AssociationSet Name="FK__hinhanh__masp__2EA5EC27" Association="TheWatchersModel.FK__hinhanh__masp__2EA5EC27">
+            <End Role="dongho" EntitySet="donghoes" />
+            <End Role="hinhanh" EntitySet="hinhanhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__motachitie__masp__1B9317B3" Association="TheWatchersModel.FK__motachitie__masp__1B9317B3">
+            <End Role="dongho" EntitySet="donghoes" />
+            <End Role="motachitiet" EntitySet="motachitiets" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="hinhanh">
+          <Key>
+            <PropertyRef Name="id_hinhanh" />
+          </Key>
+          <Property Name="id_hinhanh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="duongdan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dongho" Relationship="TheWatchersModel.FK__hinhanh__masp__2EA5EC27" FromRole="hinhanh" ToRole="dongho" />
+        </EntityType>
+        <EntityType Name="motachitiet">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="mausac" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="baohanh" Type="Int32" />
+          <Property Name="khung" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dongho" Relationship="TheWatchersModel.FK__motachitie__masp__1B9317B3" FromRole="motachitiet" ToRole="dongho" />
+        </EntityType>
+        <Association Name="FK__hinhanh__masp__2EA5EC27">
+          <End Type="TheWatchersModel.dongho" Role="dongho" Multiplicity="0..1" />
+          <End Type="TheWatchersModel.hinhanh" Role="hinhanh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="hinhanh">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__motachitie__masp__1B9317B3">
+          <End Type="TheWatchersModel.dongho" Role="dongho" Multiplicity="1" />
+          <End Type="TheWatchersModel.motachitiet" Role="motachitiet" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dongho">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="motachitiet">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -991,6 +1099,26 @@
             <EntityTypeMapping TypeName="TheWatchersModel.thuonghieu">
               <MappingFragment StoreEntitySet="thuonghieu">
                 <ScalarProperty Name="thuonghieu1" ColumnName="thuonghieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hinhanhs">
+            <EntityTypeMapping TypeName="TheWatchersModel.hinhanh">
+              <MappingFragment StoreEntitySet="hinhanh">
+                <ScalarProperty Name="duongdan" ColumnName="duongdan" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="id_hinhanh" ColumnName="id_hinhanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="motachitiets">
+            <EntityTypeMapping TypeName="TheWatchersModel.motachitiet">
+              <MappingFragment StoreEntitySet="motachitiet">
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="khung" ColumnName="khung" />
+                <ScalarProperty Name="baohanh" ColumnName="baohanh" />
+                <ScalarProperty Name="mausac" ColumnName="mausac" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

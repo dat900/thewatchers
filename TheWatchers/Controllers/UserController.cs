@@ -14,11 +14,7 @@ namespace TheWatchers.Controllers
         public ActionResult Index()
         {
             khachhang kh = Session["Taikhoan"] as khachhang;
-            if (kh != null)
-            {
-                ViewBag.TenKH = kh.tenkh.ToString();
-            }
-            return PartialView();
+            return PartialView(kh);
         }
         [HttpGet]
         public ActionResult Register()
@@ -40,6 +36,7 @@ namespace TheWatchers.Controllers
         [HttpPost]
         public ActionResult login(LoginModel model)
         {
+            
             int username = model.username;
             string pass = model.password;
             khachhang kh = db.khachhangs.SingleOrDefault(n => n.makh == username || n.matkhau == pass);
@@ -54,6 +51,11 @@ namespace TheWatchers.Controllers
                 ModelState.AddModelError("","Đăng nhập không thành công");
             }
             return View();
+        }
+        public ActionResult logOut()
+        {
+            Session["Taikhoan"] = null;
+            return Redirect("/");
         }
         public ActionResult Info(int makh)
         {
@@ -74,6 +76,11 @@ namespace TheWatchers.Controllers
                 return null;
             }
             return PartialView(check_dh);
+        }
+        public ActionResult SendMail(string ToEmailAdress, string content)
+        {
+
+            return PartialView();
         }
     }
 }

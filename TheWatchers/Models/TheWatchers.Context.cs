@@ -39,5 +39,7 @@ namespace TheWatchers.Models
         public virtual DbSet<nhanvien> nhanviens { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<thuonghieu> thuonghieux { get; set; }
+        public virtual DbSet<hinhanh> hinhanhs { get; set; }
+        public virtual DbSet<motachitiet> motachitiets { get; set; }
     }
 }

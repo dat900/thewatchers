@@ -23,7 +23,7 @@ namespace TheWatchers.Models
         public int id { get; set; }
         public Nullable<int> id_kh { get; set; }
         public System.DateTime ngay_dat { get; set; }
-        public Nullable<int> stat { get; set; }
+        public int stat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chitietdonhang> chitietdonhangs { get; set; }

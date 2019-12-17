@@ -45,19 +45,19 @@ namespace TheWatchers.Controllers
             }
             return RedirectPermanent(Url);
         }
-        public ActionResult UpdateCart(string MaDH, FormCollection form, string Url)
+        public ActionResult UpdateCart(Cart cart, string Url)
         {
-            dongho check_dh = db.donghoes.SingleOrDefault(n => n.masp == MaDH);
+            dongho check_dh = db.donghoes.Single(n => n.masp == cart.idmadh);
             if (null == check_dh)
             {
                 Response.StatusCode = 404;
                 return null;
             }
             List<Cart> carts = GetCarts();
-            Cart dongho = carts.Find(n => n.idmadh == MaDH);
+            Cart dongho = carts.Find(n => n.idmadh == cart.idmadh);
             if (null != dongho)
             {
-                dongho.iSoluong = int.Parse(form["txtSoluong"].ToString());
+                dongho.iSoluong = int.Parse(cart.iSoluong.ToString());
             }
             return Redirect(Url);
         }

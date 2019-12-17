@@ -1,9 +1,11 @@
-﻿@if (ViewBag.TenKH == null)
+﻿@model TheWatchers.Models.khachhang
+@if (Model == null)
 {
 	<li class="nav-item">@Html.ActionLink("Đăng ký", "Register", "User", new { @class = "nav-link" })</li>
 	<li class="nav-item">@Html.ActionLink("Đăng nhập", "Login", "User", new { @class = "nav-link" })</li>
 }
 else
 {
-	<li class="nav-item"><a class=" nav-link">@ViewBag.TenKH</a></li>
+	<li class="nav-item"><a class=" nav-link">Hi, @Model.tenkh</a></li>
+	<li class="nav-item">@Html.ActionLink("Đăng xuất","logOut","User", new { @class = "nav-link" })</li>
 }

@@ -11,7 +11,7 @@ namespace TheWatchers.Models.DAO
 
         public static List<dongho> getNewProducts(int num)
         {
-                List<dongho> list_dh = db.donghoes.Where(n=>n.act == true).Reverse().Take(num).ToList();
+                List<dongho> list_dh = db.donghoes.Where(n=>n.act == true).Take(num).ToList();
                 return list_dh;
         }
         public static dongho get(string id)
